@@ -1,19 +1,10 @@
-# export CUDA_VISIBLE_DEVICES=1
-# SEED=42
-# SEED=46
-# SEED=200
 SEED=223
-# renji lr: 3e-4 wd 1e-5 seed 46
-# anzhen lr: 1e-4 wd 1e-5 seed 223
-# tongji lr: 3e-4 wd 1e-5 seed 223
-# gulou lr: 3e-4 wd 1e-5 seed 223
-LOG_NAME=debug_shap_2
+LOG_NAME=debug
 LOGDIR=runs/${LOG_NAME}
 mkdir -p $LOGDIR
-# /opt/conda/envs/py39/bin/python -u \
 python -u \
 main_survival.py \
---dataset ./jsons/jsons_multi_center_wCoT/anzhen.json \
+--dataset ./jsons/jsons_multi_center_wCoT/center2.json \
 --optim_lr 3e-4 \
 --optim_name 'adamw' \
 --lrschedule 'cosine_anneal' \

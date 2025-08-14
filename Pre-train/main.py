@@ -92,18 +92,7 @@ def train_epoch(args, model,
     views = ['cinesa', 'psir', 'et1m', 'nt1m','t2m','t2star','t2w']
     view_list = {i:[] for i in views}
     for step, batch in enumerate(train_loader): 
-        # continue
-        #===============stats count=================
-        # for mod in batch:
-        #     if mod!="mod_name":
-        #         view_list[mod].append(batch[mod].shape[-1])
-        # continue
-        #===============stas count====================
-        # print(batch.keys())
-        # print(batch['cinesa'].shape) # 时间和帧数都需要统一 1, T, 512, 512, 25
-        # print(batch['non_cine'].shape) # z轴不统一无法拼接 1, 256, 256, 9
-        # print(batch['mod_name'])
-        # exit()
+       
         for key in batch:
             if key not in ["mod_name","mod_parent"]:
                 batch[key] = batch[key].to(args.device)
