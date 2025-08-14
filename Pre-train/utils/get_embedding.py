@@ -25,7 +25,7 @@ model.load_state_dict(new_state_dict, strict=True)
 from utils.data_utils import get_loader
 
 dataset_name = "center4"
-json_path = f"../../jsons/jsons_final_full_info/{dataset_name}.json" # you should preprocess tongji first
+json_path = f"../../jsons/jsons_final_full_info/{dataset_name}.json" # you should preprocess center3 first
 
 from dataset.dataset import GetImbeddingDataset
 rpt_dataset = GetImbeddingDataset(json_path)

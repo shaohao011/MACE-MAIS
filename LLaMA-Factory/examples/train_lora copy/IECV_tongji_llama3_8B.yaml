@@ -9,7 +9,7 @@ lora_rank: 8
 lora_target: all
 
 ### dataset
-dataset: anzhen_cot_train,renji_cot_train,gulou_cot_train
+dataset: anzhen_cot_train,renji_cot_train,center4_cot_train
 template: llama3
 cutoff_len: 8000
 max_samples: 2000

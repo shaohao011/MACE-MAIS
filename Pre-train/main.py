@@ -115,7 +115,7 @@ def train_epoch(args, model,
             optimizer.zero_grad()
             if scheduler:
                 scheduler.step()
-    # np.save("../logs/anzhen_list.npy",view_list,allow_pickle=True)
+    # np.save("../logs/center2_list.npy",view_list,allow_pickle=True)
     torch.cuda.empty_cache()    
     return  np.mean(loss_train),np.mean(loss_center_list),np.mean(loss_mod_list)
 

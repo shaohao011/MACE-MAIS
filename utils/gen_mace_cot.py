@@ -179,7 +179,7 @@ def main():
     parser.add_argument("--limit_num", type=int, default=0)
     args = parser.parse_args()
 
-    dataset_name = "anzhen"
+    dataset_name = "center1"
     args.data_path = f"./jsons/jsons_final_full_info/{dataset_name}.json"
     args.save_dir = f"./jsons/CoT_final/{dataset_name}"
     

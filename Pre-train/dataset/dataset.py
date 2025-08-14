@@ -9,18 +9,18 @@ from torch.nn.functional import interpolate
 import random
 
 def get_data_replace(input_str):
-    if "anzhen" in input_str:
-        replace_str = "data/anzhen/anzhen_data-12-30-full/"
-        nii_dir = "../data_processed/anzhen/"
-    elif "renji" in input_str:
-        replace_str = "./data/renji/renji-full/"
-        nii_dir = "../data_processed/renji/"
-    elif "tongji" in input_str:
-        replace_str = "data/tongji/tongji_full/"
-        nii_dir = "../data_processed/tongji/"
-    elif "gulou" in input_str:
-        replace_str = "data/gulou/images/"
-        nii_dir = "../data_processed/gulou/"
+    if "center2" in input_str:
+        replace_str = "data/center2/center2_data-12-30-full/"
+        nii_dir = "../data_processed/center2/"
+    elif "center1" in input_str:
+        replace_str = "./data/center1/center1-full/"
+        nii_dir = "../data_processed/center1/"
+    elif "center3" in input_str:
+        replace_str = "data/center3/center3_full/"
+        nii_dir = "../data_processed/center3/"
+    elif "center4" in input_str:
+        replace_str = "data/center4/images/"
+        nii_dir = "../data_processed/center4/"
     else:
         raise ValueError("No such dataset")
     return [replace_str, nii_dir]
@@ -62,7 +62,7 @@ class PretrainDataset(torch.utils.data.Dataset):
         self.total_data = total_list
         self.norm_trans = monai.transforms.ScaleIntensityRangePercentiles(lower=5, upper=95, b_min=0.0, b_max=1.0, clip=True, channel_wise=False)
         self.total_list = []
-        img_dir = "/inspire/ssd/ws-f4d69b29-e0a5-44e6-bd92-acf4de9990f0/public-project/ruishaohao-240108100042/shaohao/renji/R1_Cardio/data_processed"
+        img_dir = "/inspire/ssd/ws-f4d69b29-e0a5-44e6-bd92-acf4de9990f0/public-project/ruishaohao-240108100042/shaohao/center1/R1_Cardio/data_processed"
         
         for mod_parent in self.total_data:
             # print(mod_parent['mod_parent'])
@@ -70,7 +70,7 @@ class PretrainDataset(torch.utils.data.Dataset):
                 continue
             
             mod_list = os.listdir(mod_parent)
-            if "anzhen" in mod_parent:
+            if "center2" in mod_parent:
                 try:
                     if "cinesa.nii.gz" not in mod_list or "psir.nii.gz" not in mod_list:
                         mod_list,mod_parent = find_other_time_exam(mod_parent)
@@ -288,7 +288,7 @@ class GetImbeddingDataset(PretrainDataset):
         self.norm_trans = monai.transforms.ScaleIntensityRangePercentiles(lower=5, upper=95, b_min=0.0, b_max=1.0, clip=True, channel_wise=False)
         # exclude case without cine
         self.total_list = []
-        img_dir = "/inspire/ssd/ws-f4d69b29-e0a5-44e6-bd92-acf4de9990f0/public-project/ruishaohao-240108100042/shaohao/renji/R1_Cardio/data_processed"
+        img_dir = "/inspire/ssd/ws-f4d69b29-e0a5-44e6-bd92-acf4de9990f0/public-project/ruishaohao-240108100042/shaohao/center1/R1_Cardio/data_processed"
         
         for item in self.total_data:
             # print(mod_parent['mod_parent'])
@@ -297,10 +297,10 @@ class GetImbeddingDataset(PretrainDataset):
                 continue
             try:
                 mod_list = os.listdir(cur_mod_path)
-                if "cinesa.nii.gz" not in mod_list and "anzhen" in item['processed_name']:
+                if "cinesa.nii.gz" not in mod_list and "center2" in item['processed_name']:
                     mod_list = find_other_time_exam(item,item['mod_parent'])
             except:
-                if "anzhen" in item['processed_name']:
+                if "center2" in item['processed_name']:
                     mod_list = find_other_time_exam(item,item['mod_parent'])
                 
             # print(os.listdir(mod_parent))
@@ -400,8 +400,8 @@ class GetImbeddingDataset(PretrainDataset):
         return mod_dict
     
 if __name__=="__main__":
-    ds_json="../jsons/anzhen.json"
-    nii_dir="../data_processed/anzhen"
+    ds_json="../jsons/center2.json"
+    nii_dir="../data_processed/center2"
     dst = PretrainDataset(ds_json,nii_dir)
     print(dst[0].keys())
     print(dst[0]['cinesa'].shape)

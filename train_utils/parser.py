@@ -187,7 +187,7 @@ def get_args():
     parser.add_argument("--n_folds", default=0, type=int, help='probability to apply mask augmentation.')
     parser.add_argument("--model_index", default=-1, type=int, help='probability to apply mask augmentation.')
     parser.add_argument("--llm_name", default="clinicalBERT", type=str, help='probability to apply mask augmentation.')
-    parser.add_argument("--dataset_name", default="renji", type=str, help='probability to apply mask augmentation.')
+    parser.add_argument("--dataset_name", default="center1", type=str, help='probability to apply mask augmentation.')
     parser.add_argument('--dataset', default=[], type=str, nargs='+')
     parser.add_argument("--img_rpt_path", default="", type=str, help='probability to apply mask augmentation.')
     

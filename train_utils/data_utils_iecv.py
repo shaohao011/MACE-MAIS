@@ -65,7 +65,7 @@ def get_loader(args, tokenizer=None):
         internal_test_dict[ds_name] = test_list  
 
     # 获取外部数据集名（作为验证+测试来源）
-    full_set = {"renji", "anzhen", "tongji", "gulou"}
+    full_set = {"center1", "center2", "center3", "center4"}
     internal_set = set(args.dataset)
     external_set = full_set - internal_set
     if len(external_set) != 1:
@@ -78,7 +78,7 @@ def get_loader(args, tokenizer=None):
 
     # 构造统一分箱边界
     all_merged_data = []
-    for center in ["renji", "anzhen", "tongji", "gulou"]:
+    for center in ["center1", "center2", "center3", "center4"]:
         merged_path = os.path.join("./jsons/CoT_final", center, "merged_results.json")
         with open(merged_path, "r") as f:
             merged_data = json.load(f)
